@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react';
+import Login from './components/Login.js'
 
 class App extends React.Component {
   componentDidMount() {
@@ -9,7 +10,7 @@ class App extends React.Component {
   }
   render() {
   return (
-    "Hello I'm React"
+    <Login/>
   );
   }
 }
