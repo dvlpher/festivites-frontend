@@ -1,18 +1,28 @@
 import './App.css';
 import React from 'react';
 import Login from './components/Login.js'
+import Logout from './components/Logout.js'
+import { connect } from 'react-redux'
+import { getCurrentUser } from './actions/currentUser.js'
 
 class App extends React.Component {
   componentDidMount() {
-    fetch("http://localhost:3000/api/v1/users/1")
-    .then(r=>r.json())
-    .then(console.log)
+   this.props.getCurrentUser()
   }
+
   render() {
   return (
-    <Login/>
+    //saying if current user show logout button if not show login
+    this.props.currentUser ? <Logout/> : <Login/>
   );
+
+  }
+}
+//can destructure because the incoming argument is an object, state, coming from redux.
+const mapStateToProps = ({ currentUser }) => {
+  return { 
+    currentUser
   }
 }
 
-export default App;
+export default connect (mapStateToProps, { getCurrentUser }) (App);
