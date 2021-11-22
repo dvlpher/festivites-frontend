@@ -1,6 +1,6 @@
-/* .App {
+.App {
   text-align: center;
-} */
+}
 
 .App-logo {
   height: 40vmin;
@@ -44,4 +44,8 @@
 
 a.active {
   color: turquoise;
+}
+
+.Logout {
+  object-position: right top;
 }

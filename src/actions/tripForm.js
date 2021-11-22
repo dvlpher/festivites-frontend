@@ -16,7 +16,19 @@ export const resetTripForm = () => {
   }
 
   export const updateExistingTrip = trip => {
+      const updatedFormData = {
+        name: trip.attributes.name,
+        startDate: trip.attributes.start_date,
+        endDate: trip.attributes.end_date,
+        festivalLength: trip.attributes.festival_length,
+        ticketCost: trip.attributes.ticket_cost,
+        travelGroup: trip.attributes.travel_group, 
+        stayName: trip.attributes.stay_name, 
+        stayAddress: trip.attributes.stay_address, 
+        stayCost: trip.attributes.stay_cost
+      }
       return {
-          type: "UPDATE_EXISTING_TRIP"
+          type: "UPDATE_EXISTING_TRIP",
+          updatedFormData
       }
   }

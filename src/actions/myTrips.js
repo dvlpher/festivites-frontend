@@ -22,6 +22,20 @@ export const addTrip = trip => {
 }
 }
 
+export const deleteTripSuccess = tripId => {
+  return {
+    type: "DELETE_TRIP",
+    tripId
+  }
+}
+
+export const updateTripSuccess = trip => {
+  return {
+    type: "UPDATE_TRIP",
+    trip
+  }
+}
+
   //async actions
 export const getMyTrips = () => {
     return dispatch => {
@@ -47,10 +61,16 @@ export const getMyTrips = () => {
 export const createTrip = (tripData, history) => {
   return dispatch => {
     const railsTripData = {
+        user_id: tripData.userId,
         start_date: tripData.startDate,
         end_date: tripData.endDate,
         name: tripData.name,
-        user_id: tripData.userId
+        festival_length: tripData.festivalLength,
+        ticket_cost: tripData.ticketCost,
+        travel_group: tripData.travelGroup,
+        stay_name: tripData.stayName,
+        stay_address: tripData.stayAddress,
+        stay_cost: tripData.stayCost
     }
     return fetch("http://localhost:3000/api/v1/trips", {
       credentials: "include",
@@ -71,4 +91,64 @@ export const createTrip = (tripData, history) => {
       }
     })
   }
+}
+
+export const updateTrip = (tripData, history) => {
+  return dispatch => {
+    const railsTripData = {
+      start_date: tripData.startDate,
+        end_date: tripData.endDate,
+        name: tripData.name,
+        user_id: tripData.userId,
+        festival_length: tripData.festivalLength,
+        ticket_cost: tripData.ticketCost,
+        travel_group: tripData.travelGroup,
+        stay_name: tripData.stayName,
+        stay_address: tripData.stayAddress,
+        stay_cost: tripData.stayCost
+    }
+    return fetch(`http://localhost:3000/api/v1/trips/${tripData.tripId}`, {
+      credentials: "include",
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(railsTripData)
+    })
+      .then(r => r.json())
+      .then(resp => {
+        if (resp.error) {
+          alert(resp.error)
+        } else {
+          dispatch(updateTripSuccess(resp.data))
+          history.push(`/trips/${resp.data.id}`)
+        }
+      })
+      .catch(console.log)
+
+  }
+}
+
+export const deleteTrip = (tripId, history) => {
+  return dispatch => {
+    return fetch(`http://localhost:3000/api/v1/trips/${tripId}`, {
+      credentials: "include",
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(r => r.json())
+      .then(resp => {
+        if (resp.error) {
+          alert(resp.error)
+        } else {
+          dispatch(deleteTripSuccess(tripId))
+          history.push(`/trips`)
+        }
+      })
+      .catch(console.log)
+
+  }
+
 }

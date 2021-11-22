@@ -1,7 +1,13 @@
 const initialState = {
     name: "",
     startDate: "",
-    endDate: ""
+    endDate: "",
+    festivalLength: "",
+    ticketCost: "",
+    travelGroup: "", 
+    stayName: "", 
+    stayAddress: "", 
+    stayCost: ""
 }
 
 
@@ -14,6 +20,8 @@ export default (state=initialState, action) => {
             }
         case "RESET_NEW_TRIP_FORM":
             return initialState
+            case "UPDATE_EXISTING_TRIP":
+                return action.updatedFormData
         default:
             return state
     }
