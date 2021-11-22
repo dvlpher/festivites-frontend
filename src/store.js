@@ -5,7 +5,7 @@ import thunk from 'redux-thunk'
 import loginForm from './reducers/loginForm.js'
 import myTrips from './reducers/myTrips.js'
 import signupForm from './reducers/signupForm.js'
-import newTripForm from './reducers/newTripForm.js'
+import tripForm from './reducers/tripForm.js'
 
 
 const reducer = combineReducers({
@@ -13,7 +13,7 @@ const reducer = combineReducers({
     loginForm,
     myTrips,
     signupForm,
-    newTripForm
+    tripForm
   })
   
   //dev tools

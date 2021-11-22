@@ -10,7 +10,7 @@ const NavBar = ({ currentUser }) => {
         <div className="NavBar">
        <NavLink exact activeClassName="active" to="/trips"> My Trips   </NavLink>
        <NavLink exact activeClassName="active" to="/trips/new"> Create New Trip   </NavLink>
-       { !!currentUser ? <Logout /> : null }
+       { !!currentUser ? <><p id="loggedInUser">Welcome, <strong>{ currentUser.attributes.username }</strong>!</p> <Logout /></> : null }
         </div>
     )
 }
