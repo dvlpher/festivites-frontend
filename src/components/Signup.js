@@ -38,7 +38,7 @@ const Signup = ({signupFormData, updateSignupForm, signup, history }) => {
         <form onSubmit={handleSubmit}>
             <input placeholder = "name" value={signupFormData.name} name="name" type="text" onChange={handleUserInputChange} />
             <input placeholder = "username" value={signupFormData.username} name="username" type="text" onChange={handleUserInputChange} />
-            <input placeholder= "password" value={signupFormData.password} name="password" type="text" onChange={handleUserInputChange} />
+            <input placeholder= "password" value={signupFormData.password} name="password" type="password" onChange={handleUserInputChange} />
             <input placeholder = "city" value={signupFormData.hometown.city} name="city" type="text" onChange={handleHometownInputChange} />
             <input placeholder = "state" value={signupFormData.hometown.state} name="state" type="text" onChange={handleHometownInputChange} />
             <input placeholder = "country" value={signupFormData.hometown.country} name="country" type="text" onChange={handleHometownInputChange} />
