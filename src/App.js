@@ -8,7 +8,8 @@ import MyTrips from './components/MyTrips.js';
 import  NavBar  from './components/NavBar.js'
 import { Route, Switch, withRouter } from "react-router-dom";
 import Home from './components/Home.js'
-import NewTripForm from './components/NewTripForm';
+import TripForm from './components/TripForm';
+import TripCard from './components/TripCard';
 
 class App extends React.Component {
   componentDidMount() {
@@ -16,7 +17,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { loggedIn } = this.props
+    const { loggedIn, myTrips } = this.props
 
   return (
    <div className="App">
@@ -26,8 +27,15 @@ class App extends React.Component {
           <Route exact path="/login" component={ Login } />
           <Route exact path="/signup" render={ ({history})=> <Signup history={history}/> } />
           <Route exact path="/trips" component={ MyTrips} />
-          <Route exact path="/trips/new" component={ NewTripForm } />
-          {/* <Route exact path="/" render={ (props)=> loggedIn ? <MyTrips {...props} /> : <Home {...props}/> } /> */}
+          <Route exact path="/trips/new" component={ TripForm } />
+          <Route exact path="/trips/:id" render={ props => {
+            const trip = myTrips.find(trip => trip.id === props.match.params.id)
+            return < TripCard trip={trip} {...props} />
+          } } />
+          <Route exact path="/trips/:id/edit" render={ props => {
+            const trip = myTrips.find(trip => trip.id === props.match.params.id)
+            return < TripForm trip={trip} {...props} />
+          } } />
           </Switch>
    </div>  
   );
@@ -37,7 +45,8 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return ({
-    loggedIn: !!state.currentUser
+    loggedIn: !!state.currentUser,
+    myTrips: state.myTrips
   })
 }
 
