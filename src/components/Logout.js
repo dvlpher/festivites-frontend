@@ -5,7 +5,7 @@ import { withRouter } from "react-router";
 
 const Logout = ({ logout, history }) => {
    return (
-    <div className="Logout">
+    <div>
         <form onSubmit={(event) => {
             event.preventDefault()
             logout()
@@ -13,7 +13,7 @@ const Logout = ({ logout, history }) => {
         }
         }>
             
-            <input value="Log Out" type="submit"/>
+            <input  className="Logout" value="Log Out" type="submit"/>
           
          </form>
          </div>

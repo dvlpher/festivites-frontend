@@ -8,8 +8,8 @@ import { NavLink } from "react-router-dom";
 const NavBar = ({ currentUser }) => {
    return (
         <div className="NavBar">
-       <NavLink exact activeClassName="active" to="/trips"> My Trips   </NavLink>
-       <NavLink exact activeClassName="active" to="/trips/new"> Create New Trip   </NavLink>
+       <NavLink exact activeClassName="active" to="/trips">My Trips</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <NavLink exact activeClassName="active" to="/trips/new">Create New Trip</NavLink>
        { !!currentUser ? <><p id="loggedInUser">Welcome, <strong>{ currentUser.attributes.username }</strong>!</p> <Logout /></> : null }
         </div>
     )
